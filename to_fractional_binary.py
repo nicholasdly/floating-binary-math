@@ -1,26 +1,31 @@
 
+# The number of bits the final binary float value will have on both sides of its
+# decimal point.
 BIT_PRECISION = 8
 
 def to_fractional_binary(s):
 
-    n = float(s)
-    b = ""
-    p = BIT_PRECISION
+    num = float(s)
+    bin = ""
+    exp = BIT_PRECISION
 
-    while p >= -BIT_PRECISION:
-        if p == -1:
-            b += "."
-        if (n - 2**p) >= 0:
-            b += "1"
-            n -= 2**p
+    # While the specified precision of bits has not been reached, continue to
+    # convert the inputted decimal float value into a binary float value.
+    while exp >= -BIT_PRECISION:
+        if exp == -1:
+            bin += "."
+        if (num - 2**exp) >= 0:
+            bin += "1"
+            num -= 2**exp
         else:
-            b += "0"
-        p -= 1
+            bin += "0"
+        exp -= 1
 
-    while b[0] == "0":
-        b = b[1:]
+    # Removes leading zeros.
+    while bin[0] == "0":
+        bin = bin[1:]
 
-    return b
+    return bin
 
 def main():
 

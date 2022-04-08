@@ -1,19 +1,21 @@
 
 def from_fractional_binary(s):
     
-    n = 0
-    p = s.find(".") - 1
+    num = 0
+    exp = s.find(".") - 1
 
-    for d in s:
-        if d == ".":
+    # For every character/digit of the inputted binary float value, sum all
+    # powers of two to find the decimal value.
+    for c in s:
+        if c == ".":
             continue
-        n += int(d) * (2**p)
-        p -= 1
+        num += int(c) * (2**exp)
+        exp -= 1
 
-    return n
+    return num
 
 def main():
-    
+
     while True:
         x = input("Enter a fractional binary value: ")
         if x == "Q" or x == "q":
